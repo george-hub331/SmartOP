@@ -1,26 +1,48 @@
 import { Web3Storage } from "web3.storage";
 import {File} from '@web-std/file';
 
-const WEB3STORAGE_TOKEN = process.env.NEXT_PUBLIC_WEB3STORAGE_TOKEN;
+const JWT = process.env.NEXT_PUBLIC_PINATA_JWT;
 
-function getAccessToken() {
-  return WEB3STORAGE_TOKEN;
-}
-
-function makeStorageClient() {
-  return new Web3Storage({ token: getAccessToken() });
-}
 
 const storeContract = async (obj) => {
-  const blob = new Blob([JSON.stringify(obj)], { type: "application/json" });
-  const files = [new File([blob], "contract.json")];
-  console.log("Uploading the Contract data to IPFS via web3.storage");
-  const client = makeStorageClient();
-  const cid = await client.put(files, {
-    wrapWithDirectory: false,
+
+  const blob = new Blob([JSON.stringify(obj)], { type: "application/json", name: "contract.json" });
+  
+  formData.append("file", blob);
+
+  const pinataMetadata = JSON.stringify({
+    name: "contract.json",
   });
-  console.log("stored files with cid:", cid);
-  return cid;
+
+  formData.append("pinataMetadata", pinataMetadata);
+
+  const pinataOptions = JSON.stringify({
+    cidVersion: 0,
+  });
+  formData.append("pinataOptions", pinataOptions);
+
+  try {
+    const response = await axios.post(
+      "https://api.pinata.cloud/pinning/pinFileToIPFS",
+      formData,
+      {
+        maxBodyLength: Infinity,
+        headers: {
+          "Content-Type": `multipart/form-data; boundary=${formData.getBoundary()}`,
+          Authorization: `Bearer ${JWT}`,
+        },
+      }
+    );
+
+    console.log("stored files with cid:", response.data);
+
+    return response?.data?.IpfsHash;
+
+    
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }  
 };
 
 export default storeContract

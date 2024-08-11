@@ -39,7 +39,7 @@ async function prepareDeploy(req, res) {
 
   try {
     const CID = await storeContract(contractData);
-    const IPFSURL = `https://w3s.link/ipfs/${CID}`;
+    const IPFSURL = `https://gateway.pinata.cloud/ipfs/${CID}?1`;
     const deployLink = `http://localhost:3000/deploy/${CID}`;
     console.log(IPFSURL);
     console.log(deployLink);

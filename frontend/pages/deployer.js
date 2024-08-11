@@ -184,7 +184,7 @@ const Deployer = () => {
       duration: 5000,
       isClosable: true,
     });
-    navigator.clipboard.writeText(contractLink);
+    navigator?.clipboard?.writeText?.(contractLink);
     // console.log(`Contract Created with the address${contractLink}`);
 
     const txLink = `${explorerLink}/tx/${hash}`;

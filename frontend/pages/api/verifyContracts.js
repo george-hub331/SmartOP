@@ -39,9 +39,13 @@ async function verifyContract(req, res) {
   }
 
   try {
+
     const CID = await storeContract(contractData);
+
     console.log(CID)
-    const IPFSURL = `https://w3s.link/ipfs/${CID}`;
+
+    const IPFSURL = `https://gateway.pinata.cloud/ipfs/${CID}?1`
+
     console.log(IPFSURL);
 
     // const provider = new ethers.providers.JsonRpcProvider(RPC_LINK);
