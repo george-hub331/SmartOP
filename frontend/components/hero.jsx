@@ -9,20 +9,24 @@ import explorelogo from "../public/explorelogo.svg";
 import clilogo from "../public/clilogo.svg";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 const Hero = () => {
+
+  const router = useRouter();
+
   return (
     <div className="">
       <div className="w-screen h-full bg-gradient-to-br from-gray-50 via-sky-50 to-slate-50">
         <div className="flex flex-col">
           <div className="flex flex-col justify-center h-screen mx-auto items-center">
             <div className="flex flex-col">
-              <p className="text-transparent text-6xl bg-clip-text bg-gradient-to-r from-indigo-500 via-indigo-400 to-green-300">
-                The Developer Tools Suite
+              <p className="text-transparent text-6xl bg-clip-text bg-blue-600">
+                Your all in one toolkit for contracts
               </p>
               <p className="text-center text-6xl mt-4 font-semibold">
-                for{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-200 to-green-400">
+                on{" "}
+                <span className="text-red-500">
                   OP Stack
                 </span>{" "}
                 Chains
@@ -38,10 +42,14 @@ const Hero = () => {
             </div>
             <div className="mt-10 flex">
               <div className="w-full flex justify-center mx-auto">
-                <button className="mx-10 bg-gradient-to-r from-indigo-300 to-green-300 text-white text-xl px-12 py-2 rounded-3xl">
+                <button onClick={() => {
+                    router.push('/deployer')
+                }} className="mx-10 bg-blue-600 text-white text-xl px-12 py-2 rounded-3xl">
                   Deployer
                 </button>
-                <button className="mx-10 bg-gradient-to-r from-indigo-300 to-green-300 text-white text-xl px-12 py-2 rounded-3xl">
+                <button onClick={() => {
+                  router.push("/explorer");
+                }} className="mx-10 bg-blue-600 text-white text-xl px-12 py-2 rounded-3xl">
                   Explorer
                 </button>
               </div>

@@ -299,14 +299,14 @@ const Deployer = () => {
             <div className="mt-7 mb-20 flex justify-center mx-auto">
               <button
                 onClick={() => handleCompile()}
-                className="px-10 py-1.5 rounded-xl border bg-gradient-to-r from-indigo-400 to-green-400 text-white text-xl hover:scale-110 duration-200"
+                className="px-10 py-1.5 rounded-xl border bg-blue-600 text-white text-xl hover:scale-110 duration-200"
               >
                 Compile
               </button>
               {compiled && (
                 <button
                   onClick={() => handleDeploy()}
-                  className="px-10 py-1.5 rounded-xl border bg-gradient-to-r from-indigo-400 to-green-400 text-white text-xl hover:scale-110 duration-200 mx-3"
+                  className="px-10 py-1.5 rounded-xl border bg-blue-600 text-white text-xl hover:scale-110 duration-200 mx-3"
                 >
                   Deploy
                 </button>
@@ -314,7 +314,7 @@ const Deployer = () => {
               {compiled && (
                 <button
                   onClick={() => verifyContract()}
-                  className="px-10 py-1.5 rounded-xl border bg-gradient-to-r from-indigo-400 to-green-400 text-white text-xl hover:scale-110 duration-200 mx-3"
+                  className="px-10 py-1.5 rounded-xl border bg-blue-600 text-white text-xl hover:scale-110 duration-200 mx-3"
                 >
                   Verify
                 </button>

@@ -278,7 +278,7 @@ const Deployer = () => {
               <textarea className="border border-black w-[700px] rounded-xl px-4 py-2 font-sans h-[500px]"></textarea>
             </div>
             <div className="mt-7 mb-20 flex justify-center mx-auto">
-              <button className="px-10 py-1.5 rounded-xl border bg-gradient-to-r from-indigo-400 to-green-400 text-white text-xl hover:scale-110 duration-200">
+              <button className="px-10 py-1.5 rounded-xl border bg-blue-600 text-white text-xl hover:scale-110 duration-200">
                 Compile
               </button>
             </div>
