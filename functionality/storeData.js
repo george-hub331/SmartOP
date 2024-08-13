@@ -1,10 +1,16 @@
 import { Web3Storage } from "web3.storage";
 import {File} from '@web-std/file';
+import axios from 'axios';
+const FormDataa = require("form-data");
 
 const JWT = process.env.NEXT_PUBLIC_PINATA_JWT;
 
 
 const storeContract = async (obj) => {
+
+  const formData = new FormData();
+
+  const fmDx = new FormDataa();
 
   const blob = new Blob([JSON.stringify(obj)], { type: "application/json", name: "contract.json" });
   
@@ -28,13 +34,12 @@ const storeContract = async (obj) => {
       {
         maxBodyLength: Infinity,
         headers: {
-          "Content-Type": `multipart/form-data; boundary=${formData.getBoundary()}`,
+          "Content-Type": `multipart/form-data; boundary=${fmDx.getBoundary()}`,
           Authorization: `Bearer ${JWT}`,
         },
       }
     );
 
-    console.log("stored files with cid:", response.data);
 
     return response?.data?.IpfsHash;
 

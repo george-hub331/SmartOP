@@ -27,6 +27,7 @@ import EASService from "../../components/eas";
 const PRIVATE_KEY = process.env.NEXT_PUBLIC_PRIVATE_KEY;
 const RPC_LINK = process.env.NEXT_PUBLIC_RPC_URL;
 
+
 async function verifyContract(req, res) {
   if (!req.body.contractData) {
     return res.status(400).json({ message: "Contract Data required" });
@@ -40,13 +41,10 @@ async function verifyContract(req, res) {
 
   try {
 
+
     const CID = await storeContract(contractData);
 
-    console.log(CID)
-
     const IPFSURL = `https://gateway.pinata.cloud/ipfs/${CID}?1`
-
-    console.log(IPFSURL);
 
     // const provider = new ethers.providers.JsonRpcProvider(RPC_LINK);
     // const signer = new Wallet(PRIVATE_KEY, provider);

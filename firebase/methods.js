@@ -1,5 +1,5 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "./firebaseConfig";
+import { getDatabase, ref, set, get, child } from "firebase/database";
+
 
 // Network options :  base, baseGoerli , mainnet, optimism, optimismGoerli, zora, zoraTestnet,
 
@@ -9,27 +9,34 @@ export const addNewContractRecord = async (
   network, // Name
   chainId // Number
 ) => {
+  
   try {
-    const docRef = doc(db, "contractRegistery", `${contractAddress}`);
-    await setDoc(docRef, {
+
+    const db = getDatabase();
+
+    await set(ref(db, `contracts/${contractAddress}`), {
       network: network,
       ipfsURI: ipfsURI,
       chainId: chainId,
     });
   } catch (error) {
+
     console.log(error);
   }
 };
 
 export const getContractRecord = async (contractAddress) => {
   try {
-    const docRef = doc(db, "contractRegistery", contractAddress);
-    const docSnap = await getDoc(docRef);
+    
+    const ref = ref(getDatabase());
+
+    const docSnap = await get(child(ref, `contracts/${contractAddress}`));;
 
     if (docSnap.exists()) {
       // console.log("Document data:", docSnap.data());
-      console.log(docSnap.data());
+      
       return docSnap.data();
+
     } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");

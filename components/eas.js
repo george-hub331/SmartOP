@@ -56,6 +56,7 @@ class EASService {
     ]);
 
     const address = await this.signer.getAddress();
+    
     console.log(address);
     console.log(this.easClient);
 

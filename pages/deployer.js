@@ -233,7 +233,7 @@ const Deployer = () => {
       isClosable: true,
     });
 
-    const response = await fetch("./api/verifyContract", {
+    const response = await fetch(`${window.origin}/api/verifyContracts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
